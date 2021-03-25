@@ -1,20 +1,19 @@
-const add = (
-  num1: number,
-  num2: number,
-  showResult: boolean,
-  phrase: string
-) => {
-  const result = num1 + num2;
-  if (showResult) {
-    console.log(phrase + result);
-  } else {
-    return result;
-  }
+// const person: {
+//   name: string;
+//   age: number;
+// }
+const person = {
+  name: "Luis",
+  age: 26,
+  hobbies: ["Coding", "Golf"],
 };
 
-const number1 = 7;
-const number2 = 28;
-const printResult = true;
-const resultPhrase = "Result is: ";
+let favoriteActivities: string[];
+favoriteActivities = ["Sports"];
 
-add(number1, number2, printResult, resultPhrase);
+console.log(person.name);
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+//   console.log(hobby.map()) !!! ERROR !!!
+}
