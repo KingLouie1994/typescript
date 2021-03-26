@@ -1,46 +1,33 @@
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string];
-// } = {
-//   name: "Luis",
-//   age: 26,
-//   hobbies: ["Coding", "Golf"],
-//   role: [2, "author"],
-// };
+type Combinable = number | string;
+type Converter = "number" | "text";
 
-// Does not work because of type
-// person.role[1] = 10;
-// person.role = [];
-
-// const ADMIN = 0;
-// const READ_ONLY = 1;
-// const AUTHOR = 2;
-
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
-}
-
-const person = {
-  name: "Luis",
-  age: 26,
-  hobbies: ["Coding", "Golf"],
-  role: Role.ADMIN,
+const combine = (
+  input1: Combinable,
+  input2: Combinable,
+  resultType: Converter
+) => {
+  let result;
+  if (
+    (typeof input1 === "number" && typeof input2 === "number") ||
+    resultType === "number"
+  ) {
+    result = +input1 + +input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
+  //   if (resultType === "number") {
+  //     return +result;
+  //   } else if (resultType === "text") {
+  //     return result.toString();
+  //   }
 };
 
-let favoriteActivities: string[];
-favoriteActivities = ["Sports"];
+const combinedAges = combine(26, 24, "number");
+console.log(combinedAges);
 
-console.log(person.name);
+const combinedStringAges = combine("26", "24", "number");
+console.log(combinedStringAges);
 
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-  //   console.log(hobby.map()) !!! ERROR !!! because of type
-}
-
-if (person.role === Role.AUTHOR) {
-  console.log("I am an Author");
-}
+const combinedWords = combine("Hello", "World", "text");
+console.log(combinedWords);
