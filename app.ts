@@ -1,33 +1,30 @@
-type Combinable = number | string;
-type Converter = "number" | "text";
-
-const combine = (
-  input1: Combinable,
-  input2: Combinable,
-  resultType: Converter
-) => {
-  let result;
-  if (
-    (typeof input1 === "number" && typeof input2 === "number") ||
-    resultType === "number"
-  ) {
-    result = +input1 + +input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-  return result;
-  //   if (resultType === "number") {
-  //     return +result;
-  //   } else if (resultType === "text") {
-  //     return result.toString();
-  //   }
+const add = (num1: number, num2: number) => {
+  return num1 + num2;
 };
 
-const combinedAges = combine(26, 24, "number");
-console.log(combinedAges);
+const printResult = (num: number): void => {
+  console.log("Result " + num);
+};
 
-const combinedStringAges = combine("26", "24", "number");
-console.log(combinedStringAges);
+const addAndHandle = (
+  num1: number,
+  num2: number,
+  cb: (num: number) => void
+) => {
+  const result = num1 + num2;
+  cb(result);
+};
 
-const combinedWords = combine("Hello", "World", "text");
-console.log(combinedWords);
+printResult(add(7, 28));
+
+let combineValues: (a: number, b: number) => number;
+
+combineValues = add;
+// combineValues = 5 !!!ERROR!!!
+// combineValues = printResult !!!ERROR!!!
+
+console.log(combineValues(8, 8));
+
+addAndHandle(10, 10, (result) => {
+  console.log(result);
+});
