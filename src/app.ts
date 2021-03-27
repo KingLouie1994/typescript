@@ -1,9 +1,10 @@
-const button = document.querySelector("button")!;
+class Department {
+  name: string;
 
-const clickHandler = (message: string) => {
-  console.log("Clicked! " + message);
-};
-
-if (button) {
-  button.addEventListener("click", clickHandler.bind(null, "You're welcome!"));
+  constructor(n: string) {
+    this.name = n;
+  }
 }
+
+const accounting = new Department("Luis");
+console.log(accounting);
