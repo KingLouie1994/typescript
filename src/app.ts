@@ -1,111 +1,18 @@
-abstract class Department {
-  static fiscalYear = 2021;
-  // private id: string;
-  // private name: string;
-  protected employees: string[] = [];
+interface Person {
+  name: string;
+  age: number;
 
-  constructor(protected readonly id: string, public name: string) {
-    // this.id = id
-    // this.name = name;
-  }
-
-  static createEmployee(name: string) {
-    return { name: name };
-  }
-
-  abstract describe(this: Department): void;
-
-  addEmployee(employee: string) {
-    this.employees.push(employee);
-  }
-
-  printEmployeeInformation() {
-    console.log(this.employees.length);
-    console.log(this.employees);
-  }
+  greet(phrase: string): void;
 }
 
-class ITDepartment extends Department {
-  admins: string[];
-  constructor(id: string, admins: string[]) {
-    super(id, "IT");
-    this.admins = admins;
-  }
+let user1: Person;
 
-  describe() {
-    console.log(`IT Department - ID: ${this.id}`);
-  }
-}
+user1 = {
+  name: "Luis",
+  age: 26,
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  },
+};
 
-class AccountingDepartment extends Department {
-  private lastReport: string;
-  private static instance: AccountingDepartment;
-
-  get mostRecentReport() {
-    if (this.lastReport) {
-      return this.lastReport;
-    }
-    throw new Error("No report found!");
-  }
-
-  set mostRecentReport(value: string) {
-    if (!value) {
-      throw new Error("Please pass in a value");
-    }
-    this.addReport(value);
-  }
-
-  private constructor(id: string, private reports: string[]) {
-    super(id, "IT");
-    this.lastReport = reports[0];
-  }
-
-  static getInstance() {
-    if (this.instance) {
-      return this.instance;
-    }
-    this.instance = new AccountingDepartment("ID2", []);
-    return this.instance;
-  }
-
-  describe() {
-    console.log(`Accounting Department - ID: ${this.id}`);
-  }
-
-  addEmployee(name: string) {
-    if (name === "Luis") {
-      return;
-    }
-    this.employees.push(name);
-  }
-
-  addReport(text: string) {
-    this.reports.push(text);
-    this.lastReport = text;
-  }
-
-  getReports() {
-    console.log(this.reports);
-  }
-}
-
-const employee1 = Department.createEmployee("Luis");
-console.log(employee1, Department.fiscalYear);
-
-const it = new ITDepartment("ID1", ["Luis", "Louise"]);
-it.addEmployee("Luis");
-it.addEmployee("Louise");
-it.describe();
-it.printEmployeeInformation();
-console.log(it);
-
-// const accounting = new AccountingDepartment("ID2", []);
-const accounting = AccountingDepartment.getInstance();
-accounting.addEmployee("Donnie");
-// console.log(accounting.mostRecentReport); would throw error in this place
-accounting.mostRecentReport = "LOL";
-accounting.addReport("Christmas Party");
-console.log(accounting.mostRecentReport);
-accounting.getReports();
-accounting.printEmployeeInformation();
-accounting.describe();
+user1.greet("Hi there - I'm");
