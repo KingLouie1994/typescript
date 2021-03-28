@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2021;
   // private id: string;
   // private name: string;
   protected employees: string[] = [];
@@ -6,6 +7,10 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.id = id
     // this.name = name;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -69,28 +74,21 @@ class AccountingDepartment extends Department {
   }
 }
 
-const it = new ITDepartment("ID1", ["Luis", "Louise"]);
+const employee1 = Department.createEmployee("Luis");
+console.log(employee1, Department.fiscalYear);
 
+const it = new ITDepartment("ID1", ["Luis", "Louise"]);
 it.addEmployee("Luis");
 it.addEmployee("Louise");
-
 it.describe();
 it.printEmployeeInformation();
-
 console.log(it);
 
 const accounting = new AccountingDepartment("ID2", []);
-
 accounting.addEmployee("Donnie");
-
 // console.log(accounting.mostRecentReport); would throw error in this place
-
 accounting.mostRecentReport = "LOL";
-
 accounting.addReport("Christmas Party");
-
 console.log(accounting.mostRecentReport);
-
 accounting.getReports();
-
 accounting.printEmployeeInformation();
