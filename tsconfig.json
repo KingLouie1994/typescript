@@ -82,5 +82,5 @@
     "src/union-literal-custom.ts",
     "src/unknown-never.ts"
   ],
-  "include": ["src/app.ts", "src/analytics.ts"]
+  "include": ["src/app.ts"]
 }
