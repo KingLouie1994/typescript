@@ -39,6 +39,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   get mostRecentReport() {
     if (this.lastReport) {
@@ -54,9 +55,17 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, "IT");
     this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("ID2", []);
+    return this.instance;
   }
 
   describe() {
@@ -90,7 +99,8 @@ it.describe();
 it.printEmployeeInformation();
 console.log(it);
 
-const accounting = new AccountingDepartment("ID2", []);
+// const accounting = new AccountingDepartment("ID2", []);
+const accounting = AccountingDepartment.getInstance();
 accounting.addEmployee("Donnie");
 // console.log(accounting.mostRecentReport); would throw error in this place
 accounting.mostRecentReport = "LOL";
