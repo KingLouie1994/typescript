@@ -9,7 +9,8 @@ add = (num1: number, num2: number) => {
 };
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  gender?: string; // Optional
 }
 
 interface Greetable extends Named {
@@ -17,21 +18,27 @@ interface Greetable extends Named {
 }
 
 class Person implements Greetable {
-  name: string;
+  name?: string;
   age: number;
 
-  constructor(n: string, a: number) {
-    this.name = n;
+  constructor(a: number, n?: string) {
+    if (n) {
+      this.name = n;
+    }
     this.age = a;
   }
 
   greet(phrase: string) {
-    console.log(phrase + " " + this.name);
+    if (this.name) {
+      console.log(phrase + " " + this.name);
+    } else {
+      console.log(`I am ${this.age} years old`);
+    }
   }
 }
 
 let user1: Greetable;
-user1 = new Person("Luis", 26);
+user1 = new Person(26, "Luis");
 // user1.name = "Louise"; !!!ERROR!!! Because of readonly
 console.log(user1);
 user1.greet("Hi there - I'm");
