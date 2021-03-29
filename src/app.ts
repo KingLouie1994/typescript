@@ -40,8 +40,11 @@ const fetchedUserData = {
     description: "My own company",
   },
 };
-
 console.log(fetchedUserData?.job?.title);
+
+const userInput = null;
+const storedData = userInput ?? "DEFAULT";
+console.log(storedData);
 
 type UnknownEmployee = Employee | Admin;
 
