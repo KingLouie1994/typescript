@@ -102,5 +102,12 @@ moveAnimal({ type: "bird", AirSpeed: 60 });
 
 // const userInputElement = <HTMLInputElement>document.getElementById("user-input")!;
 const userInputElement = document.getElementById("user-input");
-
 (userInputElement as HTMLInputElement).value = "Hi there!";
+
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email address!",
+};
