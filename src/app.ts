@@ -72,3 +72,30 @@ const useVehicle = (vehicle: Vehicle) => {
 
 useVehicle(v1);
 useVehicle(v2);
+
+interface Bird {
+  type: "bird";
+  AirSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  GroundSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+const moveAnimal = (animal: Animal) => {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.AirSpeed;
+      break;
+    case "horse":
+      speed = animal.GroundSpeed;
+      break;
+  }
+  console.log(`Moving at ${speed}km/h`);
+};
+
+moveAnimal({ type: "bird", AirSpeed: 60 });
