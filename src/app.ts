@@ -1,4 +1,4 @@
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 
@@ -7,7 +7,6 @@ const mergedObj = merge(
   { age: 26 }
 );
 console.log(mergedObj);
-
 
 // const names: Array<string> = ["Luis", "Louise"];
 // // names[0].split(" ");
